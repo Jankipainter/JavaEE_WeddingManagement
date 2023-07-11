@@ -1,0 +1,93 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Facelet Title</title>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"></link>
+        
+        <script src="JS/pdf.js"></script>
+    </h:head>
+    <h:body id="body">
+          <br/>
+         <h:form id="toggle" > 
+
+                <p:commandButton  icon="pi pi-bars" style="background-color:#ffffff;height: 30% ;border: none;margin-left: 2%;margin-bottom: 2%;color: #dd666c" oncomplete="PF('sidebar1').show()"/>
+
+                <h:outputText value="The Real Wedding" style="margin-left: 38%;font-size: 200%;color: #dd666c"/>
+                <span style="margin-left: 32%">
+                     <p:commandButton icon="pi pi-user" styleClass="rounded-button" style="background-color:#dd666c;border: none " action="#{userManageBean.viewuser()}"/>
+                </span>
+                <span style="margin-left: 2%">
+                    <p:commandButton icon="pi pi-sign-out" styleClass="rounded-button" style="background-color:#dd666c;border: none " action="#{providedPlannerServiceManagedBean.plannerLogout()}"/>
+                </span>
+                <p:sidebar widgetVar="sidebar1" >
+                    <br/><br/>
+                    <h:graphicImage url="/Resource/images/logo.jpg" style="background-color: #ffffff" height="85px" width="100%"></h:graphicImage><br/><br/>
+                    <p:commandButton value="Wedding Date" action="#{weddingManagedBean.goToWeddingDate()}" style="width: 100%;background-color: #dd666c;border: none" oncomplete="PF('sidebar1').hide()"/>  <br/><br/>
+                    <p:commandButton value="Select Services" action="#{weddingManagedBean.AlredySelectDate()}" style="width: 100%;background-color: #dd666c;border: none" oncomplete="PF('sidebar1').hide()"/>  <br/><br/>
+                    <p:commandButton value="Select Planner" action="#{userManageBean.afterSelectService()}" style="width: 100%;background-color: #dd666c;border: none " oncomplete="PF('sidebar1').hide()"/><br/><br/>
+                    <p:commandButton value="Selected Services" action="#{eventManagedBean.goToSelectService()}" style="width: 100%;background-color: #dd666c;border: none " oncomplete="PF('sidebar1').hide()"/><br/><br/>
+                    <p:commandButton value="Add Event" action="#{eventManagedBean.goToEvent()}" style="width: 100%;background-color: #dd666c;border: none " oncomplete="PF('sidebar1').hide()"/>  <br/><br/>
+                    <p:commandButton value="Payment" action="#{paymentManagedBean.goToPayment()}" style="width: 100%;background-color: #dd666c;border: none " oncomplete="PF('sidebar1').hide()"/>  <br/><br/>
+                </p:sidebar>
+
+            </h:form>
+        
+         <p:toolbar>
+                                    <p:toolbarGroup>
+                                        <button id="btn-print" onclick="printPage()" style="background-color: #3b7771;color: #ffffff; border: none;border-radius: 6px;font-size: 150%; width: 130%" ><i class="pi pi-upload">Export</i></button>
+                                      
+                                    </p:toolbarGroup>
+         </p:toolbar>
+        <h:form >
+            
+            <p:card  style="margin-left: 20%;margin-top: 3%;box-shadow: #dff3f1;margin-right: 20%;margin-bottom: 10%">
+                <div  id="invoice">
+                <h1 align="center" style="color: #1d3b38">The Real Wedding</h1>
+                <br/><br/>
+                
+                <div>
+                   
+                    <p:outputLabel style="font-size: 120%;color:#3b7771;margin-left: 5%" value="User Name : ">#{session.getAttribute("UserFName")} #{session.getAttribute("UserLName")}</p:outputLabel>
+                    <br/><br/>
+                     <p:outputLabel style="font-size: 120%;color:#3b7771;margin-left: 5%" value="User Email : ">#{session.getAttribute("UserEmail")} </p:outputLabel>
+                     <br/><br/>
+                     <p:outputLabel style="font-size: 120%;color:#3b7771;margin-left: 5%" value="Event Name : ">#{paymentManagedBean.ename} </p:outputLabel>
+                      <br/><br/>
+                      <p:outputLabel style="font-size: 120%;color:#3b7771;margin-left: 5%" value="Event Start Date : ">#{paymentManagedBean.sd} </p:outputLabel>
+                       <br/><br/>
+                       <p:outputLabel style="font-size: 120%;color:#3b7771;margin-left: 5%" value="Event End Date : ">#{paymentManagedBean.ed} </p:outputLabel>
+                        <br/><br/>
+                     <p:outputLabel style="font-size: 120%;color:#3b7771;margin-left: 5%" value="Event Name : ">#{paymentManagedBean.ename} </p:outputLabel>
+                      <br/><br/>
+                      <p:outputLabel style="font-size: 120%;color:#3b7771;margin-left: 5%" value="Gross Total : ">#{paymentManagedBean.amt} </p:outputLabel>
+                       <br/><br/>
+                         <p:outputLabel style="font-size: 120%;color:#3b7771;margin-left: 5%" value="Payment Time : ">#{paymentManagedBean.d} </p:outputLabel>
+                    
+                        <div align="right" >
+                    <img  src="../resources/image/wed_couple.png" style="width: 30%;height: 50%;align-content: center"/>
+                   <br/>
+                   <h6>Thank You For Visit Our WebSite..
+                       <br/>
+                       Our Blessing Is Always With You Guys,
+                       Live A Happy Life Together..
+                   </h6><br/>
+                   <img src="../resources/image/sign.png" alt="alt"/><br/>
+                   <p:outputLabel style="margin-left: 10%" >#{weddingManagedBean.currentDate}</p:outputLabel>
+                </div>
+                    <br/><br/><!-- comment -->
+                      
+                      <div></div>
+                </div>
+                </div> 
+            </p:card>
+                
+           
+                  
+      
+        </h:form>
+    </h:body>
+</html>

@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Facelet Title</title>
+        <link rel="stylesheet" href="../Template/css/login.css"/>
+    </h:head>
+    <h:body>
+        <h:form >
+            <div class="container">
+<!--            <p:outputLabel value="Login Page"/>-->
+            
+            <p:outputLabel for="uname" value="User Name"/>
+            <p:inputText id="uname" required="true" requiredMessage="Please Enter User Name"/>
+            
+            <p:outputLabel for="pass" value="Password"/>
+             <p:inputText id="pass" required="true" requiredMessage="Please Enter Valid Password"/>
+             
+             <p:commandButton value="Login"/>
+             <p:outputLabel value="Remember Me">
+<!--                 <p:checkbox disabled="false"/>-->
+             </p:outputLabel>
+            </div>
+        </h:form>
+    </h:body>
+</html>

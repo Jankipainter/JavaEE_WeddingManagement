@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/J:/8sem/project/RealWeddingProject/web/Planner/PlannerDashboard.xhtml</file>
+            <file>file:/J:/8sem/project/RealWeddingProject/web/loginpage.xhtml</file>
+            <file>file:/J:/8sem/project/RealWeddingProject/web/Planner/PlannerHome.xhtml</file>
+            <file>file:/J:/8sem/project/RealWeddingProject/src/java/ManagedBean/LoginManagedBean.java</file>
+            <file>file:/J:/8sem/project/RealWeddingProject/src/java/Entity/PlanService.java</file>
+            <file>file:/J:/8sem/project/RealWeddingProject/src/java/ManagedBean/ForgotPassManagedBean.java</file>
+            <file>file:/J:/8sem/project/RealWeddingProject/src/java/Client/WeddingClient.java</file>
+            <file>file:/J:/8sem/project/RealWeddingProject/web/Map.jsp</file>
+            <file>file:/J:/8sem/project/RealWeddingProject/src/java/ejb/UserBean.java</file>
+            <file>file:/J:/8sem/project/RealWeddingProject/web/Planner/AddPlannerService.xhtml</file>
+            <file>file:/J:/8sem/project/RealWeddingProject/web/Planner/SelectedService.xhtml</file>
+            <file>file:/J:/8sem/project/RealWeddingProject/web/Planner/EditPlannerService.xhtml</file>
+            <file>file:/J:/8sem/project/RealWeddingProject/src/java/ejb/PlannerBean.java</file>
+            <file>file:/J:/8sem/project/RealWeddingProject/web/User/UserProfile.xhtml</file>
+            <file>file:/J:/8sem/project/RealWeddingProject/web/ResetPass.xhtml</file>
+            <file>file:/J:/8sem/project/RealWeddingProject/src/java/ManagedBean/ProvidedPlannerServiceManagedBean.java</file>
+            <file>file:/J:/8sem/project/RealWeddingProject/web/Planner/PlannerProfile.xhtml</file>
+            <file>file:/J:/8sem/project/RealWeddingProject/src/java/ManagedBean/PlannerManagedBean.java</file>
+            <file>file:/J:/8sem/project/RealWeddingProject/web/User/JS/map.js</file>
+            <file>file:/J:/8sem/project/RealWeddingProject/web/ForgotPass.xhtml</file>
+            <file>file:/J:/8sem/project/RealWeddingProject/web/User/SelectedServices.xhtml</file>
+        </group>
+    </open-files>
+</project-private>

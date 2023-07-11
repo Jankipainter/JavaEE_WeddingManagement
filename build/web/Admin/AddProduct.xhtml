@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+         <h:form enctype="multipart/form-data">
+            <center>
+                <p:panelGrid columns="2">
+                <h:outputLabel value="Product Code"/>
+                <p:inputText value="#{productManagedBean.product_code}" />
+                
+                 <h:outputLabel value="Product Name"/>
+                 <p:inputText value="#{productManagedBean.product_name}" />
+                 
+                  <h:outputLabel value="Product Description"/>
+                  <p:inputText value="#{productManagedBean.description}" />
+                  
+                   <h:outputLabel value="Picture"/>
+                   <p:fileUpload value="#{productManagedBean.file}" />
+                 
+                  <h:outputLabel value="Price"/>
+                  <p:inputText value="#{productManagedBean.price}" />
+                  
+                   <h:outputLabel for="id" value="Religion Id"/>
+                   <p:selectOneMenu value="#{productManagedBean.religion_id}">
+                       <f:selectItems value="#{userManageBean.getReligions()}" var="r" itemLabel="#{r.religionName}" itemValue="#{r.religionId}"/>
+                    
+                    </p:selectOneMenu>
+                </p:panelGrid>
+                
+                <p:commandButton value="Add" action="#{productManagedBean.addProduct()}"/>
+            </center>
+        </h:form>
+    </h:body>
+</html>

@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+<!--        <p:outputLabel value="Your Name">#{session.getAttribute("PlannerName")}</p:outputLabel><br/><br/>
+        <p:outputLabel value="Your Email">#{session.getAttribute("PlannerEmail")}</p:outputLabel>-->
+          <br/>
+         <h:form id="toggle" > 
+
+                <p:commandButton  icon="pi pi-bars" style="background-color:#ffffff;height: 30% ;border: none;margin-left: 2%;margin-bottom: 2%;color: #dd666c" oncomplete="PF('sidebar1').show()"/>
+
+                <h:outputText value="The Real Wedding" style="margin-left: 38%;font-size: 200%;color: #dd666c"/>
+                <span style="margin-left: 32%">
+                    <p:commandButton icon="pi pi-user" styleClass="rounded-button" style="background-color:#dd666c;border: none " action="#{userManageBean.viewuser()}"/>
+                </span>
+                <span style="margin-left: 2%">
+                    <p:commandButton icon="pi pi-sign-out" styleClass="rounded-button" style="background-color:#dd666c;border: none " action="#{providedPlannerServiceManagedBean.plannerLogout()}"/>
+                </span>
+                <p:sidebar widgetVar="sidebar1" >
+                    <br/><br/>
+                    <h:graphicImage url="/Resource/images/logo.jpg" style="background-color: #ffffff" height="85px" width="100%"></h:graphicImage><br/><br/>
+                    <p:commandButton value="Home" action="#{plannerManagedBean.gotoplannerhome()}" style="width: 100%;background-color: #dd666c;border: none" oncomplete="PF('sidebar1').hide()"/>  <br/><br/>
+                    <p:commandButton value="Add Service" action="#{plannerManagedBean.gotoplannerAddservice()}" style="width: 100%;background-color: #dd666c;border: none " oncomplete="PF('sidebar1').hide()"/><br/><br/>
+                    <p:commandButton value="Users" action="#{plannerManagedBean.gotoSelectList()}" style="width: 100%;background-color: #dd666c;border: none " oncomplete="PF('sidebar1').hide()"/>  <br/><br/>
+                </p:sidebar>
+
+            </h:form>
+
+        <h:form>
+            <p:card style="margin-top: 10%;background-color: #dff3f1;margin-left: 30%;margin-right: 30%">
+                <center>
+                <p:graphicImage url="../resources/image/user.png" style="height: 1%;width: 10%;animation: ease-in-out;background: round;background-color: #002752" />
+            <br/><br/>
+            <p:outputLabel style="font-weight: bold;color: #3b7771" value="Name : "> #{session.getAttribute("PlannerName")}</p:outputLabel><br/><br/>
+            <p:outputLabel style="font-weight: bold;color: #3b7771" value="Email : "> #{session.getAttribute("PlannerEmail")}</p:outputLabel><br/><br/>
+             <!--<p:outputLabel style="font-weight: bold;color: #3b7771" value="Last Name : ">  #{session.getAttribute("UserLName")}</p:outputLabel><br/><br/>-->
+                </center>
+            </p:card>
+        </h:form>
+    </h:body>
+</html>

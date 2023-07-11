@@ -1,0 +1,158 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Facelet Title</title>
+
+    </h:head>
+    <h:body>
+          <br/>
+          <h:form id="toggle" > 
+
+                <p:commandButton  icon="pi pi-bars" style="background-color:#ffffff;height: 30% ;border: none;margin-left: 2%;margin-bottom: 2%;color: #dd666c" oncomplete="PF('sidebar1').show()"/>
+
+                <h:outputText value="The Real Wedding" style="margin-left: 38%;font-size: 200%;color: #dd666c"/>
+                <span style="margin-left: 32%">
+                    <p:commandButton icon="pi pi-user" styleClass="rounded-button" style="background-color:#dd666c;border: none " action="#{userManageBean.viewuser()}"/>
+                </span>
+                <span style="margin-left: 2%">
+                    <p:commandButton icon="pi pi-sign-out" styleClass="rounded-button" style="background-color:#dd666c;border: none " action="#{providedPlannerServiceManagedBean.plannerLogout()}"/>
+                </span>
+                <p:sidebar widgetVar="sidebar1" >
+                    <br/><br/>
+                    <h:graphicImage url="/Resource/images/logo.jpg" style="background-color: #ffffff" height="85px" width="100%"></h:graphicImage><br/><br/>
+                    <p:commandButton value="Wedding Date" action="#{weddingManagedBean.goToWeddingDate()}" style="width: 100%;background-color: #dd666c;border: none" oncomplete="PF('sidebar1').hide()"/>  <br/><br/>
+                    <p:commandButton value="Select Services" action="#{weddingManagedBean.AlredySelectDate()}" style="width: 100%;background-color: #dd666c;border: none" oncomplete="PF('sidebar1').hide()"/>  <br/><br/>
+                    <p:commandButton value="Select Planner" action="#{userManageBean.afterSelectService()}" style="width: 100%;background-color: #dd666c;border: none " oncomplete="PF('sidebar1').hide()"/><br/><br/>
+                    <p:commandButton value="Selected Services" action="#{eventManagedBean.goToSelectService()}" style="width: 100%;background-color: #dd666c;border: none " oncomplete="PF('sidebar1').hide()"/><br/><br/>
+                    <p:commandButton value="Add Event" action="#{eventManagedBean.goToEvent()}" style="width: 100%;background-color: #dd666c;border: none " oncomplete="PF('sidebar1').hide()"/>  <br/><br/>
+                    <p:commandButton value="Payment" action="#{paymentManagedBean.goToPayment()}" style="width: 100%;background-color: #dd666c;border: none " oncomplete="PF('sidebar1').hide()"/>  <br/><br/>
+                </p:sidebar>
+
+            </h:form>
+
+            <f:view>
+            <h:form>
+                <p:toolbar>
+                    <p:toolbarGroup>
+                <p:outputLabel value="RELIGION" style="font-weight: bold"/>
+                <p:selectOneMenu value="#{userManageBean.religion_id}" var="item" onchange="this.form.submit()">
+                    <f:selectItem itemLabel="--select--" itemValue=""/>
+                    <f:selectItems value="#{userManageBean.religions}" var="r" itemLabel="#{r.religionName}" itemValue="#{r.religionId}"/>
+                    
+                </p:selectOneMenu>
+                    </p:toolbarGroup>
+                    <p:toolbarGroup >
+                        <p:commandButton value="Already Selected Services" action="#{userManageBean.alreadyselected()}" style="background-color: #3b7771;color: #ffffff"/>
+                    </p:toolbarGroup>
+                </p:toolbar>
+
+<!--                <p:commandButton value="Search" action="#{plannerServiceManagedBean.viewServiceByReligion(userManageBean.religion_id)}" onclick="show_hide()"/>
+
+</h:form>-->
+                <div>
+                    <!--<h:form id="table_data" style="display: none;align-items: initial" >-->
+                   
+                    <p:dataTable id="groupFrom" paginator="true" paginatorPosition="bottom" rows="8" value="#{plannerServiceManagedBean.getServiceByReligionId}" var="item">
+                        <p:column style="background-color: #dff3f1">
+                            <f:facet name="header">
+                                <h:outputText value="ServiceId"/>
+                            </f:facet>
+                            <h:outputText value="#{item.serviceId}" />
+                        </p:column>
+                        <p:column style="background-color: #dff3f1">
+                            <f:facet name="header">
+                                <h:outputText value="ServiceCode"/>
+                            </f:facet>
+                            <h:outputText value="#{item.serviceCode}"/>
+                        </p:column>
+                        <p:column style="background-color: #dff3f1">
+                            <f:facet name="header">
+                                <h:outputText value="ServiceName"/>
+                            </f:facet>
+                            <h:outputText value="#{item.serviceName}"/>
+                        </p:column>
+                        <p:column style="background-color: #dff3f1">
+                            <f:facet name="header">
+                                <h:outputText value="Description"/>
+                            </f:facet>
+                            <h:outputText value="#{item.description}"/>
+                        </p:column>
+                        <p:column style="background-color: #dff3f1">
+                            <f:facet name="header">
+                                <h:outputText value="Picture"/>
+                            </f:facet>
+                            <!--<p:graphicImage value="/Upload/#{item.picture}"/>-->
+                            <img src="/RealWeddingProject/resources/Upload/#{item.picture}" alt="alt" style="height: 50%;width: 50%"/>
+                            <!--<h:outputText value="#{item.picture}"/>-->
+                        </p:column>
+                        <p:column style="background-color: #dff3f1">
+                            <f:facet name="header">
+                                <h:outputText value="Pri"/>
+                            </f:facet>
+                            <h:outputText value="#{item.pri}"/>
+                        </p:column>
+                        <p:column style="background-color: #dff3f1">
+                            <f:facet name="header">
+                                <h:outputText value="Religion"/>
+                            </f:facet>
+                            <h:outputText value="#{item.religion.religionName}"/>
+                        </p:column>
+                        <p:column style="background-color: #dff3f1">
+                            <f:facet name="header">
+                                <h:outputText value="select service"/>
+                            </f:facet>
+                            <p:selectManyCheckbox value="#{userManageBean.selectedService}"   id="checkbox">
+                                <f:selectItem itemValue="#{item}" itemLabel=" " />
+                            </p:selectManyCheckbox>
+
+                        </p:column>
+<!--                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Planner"/>
+                            </f:facet>
+                                                        <p:commandButton value="detail">
+                                                            <p:ajax update="groupFrom" event="click"  oncomplete="jQuery('table-data').show()"/>
+                                                            <f:ajax event="click" render="table_data" listener="#{userManageBean.viewDetail(item.serviceId)}" />
+                                                        </p:commandButton>
+                            <p:commandButton  update=":dialogs:manage-service-content"
+                                              oncomplete="PF('manageServiceDialog').show()"
+                                               process="@this">
+                                <f:setPropertyActionListener value="#{item.serviceId}" target="#{userManageBean.getPlannerByServiceId}" />
+                                <p:resetInput target=":dialogs:manage-service-content" />
+                            </p:commandButton>
+
+                        </p:column>-->
+
+
+                    </p:dataTable>
+                </div>
+
+                 <br/><br/><br/>
+                 <p:commandButton style="background-color: #3b7771;color: #ffffff;width: 30%;font-size: larger;font-weight: bold;margin-left: 36%"  value="next" action="#{userManageBean.afterSelectService()}"/>
+            
+                
+            </h:form>
+
+
+
+
+           
+            <script>
+
+
+                function show_hide()
+                {
+
+                    document.getElementById("table_data").style.display = "initial";
+//                   window.location.load();
+                }
+
+            </script>
+
+        </f:view>
+    </h:body>
+</html>

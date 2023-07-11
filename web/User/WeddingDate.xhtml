@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <br/>
+         <h:form id="toggle" > 
+
+                <p:commandButton  icon="pi pi-bars" style="background-color:#ffffff;height: 30% ;border: none;margin-left: 2%;margin-bottom: 2%;color: #dd666c" oncomplete="PF('sidebar1').show()"/>
+
+                <h:outputText value="The Real Wedding" style="margin-left: 38%;font-size: 200%;color: #dd666c"/>
+                 <span style="margin-left: 32%">
+                    <p:commandButton icon="pi pi-user" styleClass="rounded-button" style="background-color:#dd666c;border: none " action="#{userManageBean.viewuser()}"/>
+                </span>
+                <span style="margin-left: 2%">
+                    <p:commandButton icon="pi pi-sign-out" styleClass="rounded-button" style="background-color:#dd666c;border: none " action="#{providedPlannerServiceManagedBean.plannerLogout()}"/>
+                </span>
+                <p:sidebar widgetVar="sidebar1" >
+                    <br/><br/>
+                    <h:graphicImage url="/Resource/images/logo.jpg" style="background-color: #ffffff" height="85px" width="100%"></h:graphicImage><br/><br/>
+                    <p:commandButton value="Wedding Date" action="#{weddingManagedBean.goToWeddingDate()}" style="width: 100%;background-color: #dd666c;border: none" oncomplete="PF('sidebar1').hide()"/>  <br/><br/>
+                    <p:commandButton value="Select Services" action="#{weddingManagedBean.AlredySelectDate()}" style="width: 100%;background-color: #dd666c;border: none" oncomplete="PF('sidebar1').hide()"/>  <br/><br/>
+                    <p:commandButton value="Select Planner" action="#{userManageBean.afterSelectService()}" style="width: 100%;background-color: #dd666c;border: none " oncomplete="PF('sidebar1').hide()"/><br/><br/>
+                    <p:commandButton value="Selected Services" action="#{eventManagedBean.goToSelectService()}" style="width: 100%;background-color: #dd666c;border: none " oncomplete="PF('sidebar1').hide()"/><br/><br/>
+                    <p:commandButton value="Add Event" action="#{eventManagedBean.goToEvent()}" style="width: 100%;background-color: #dd666c;border: none " oncomplete="PF('sidebar1').hide()"/>  <br/><br/>
+                    <p:commandButton value="Payment" action="#{paymentManagedBean.goToPayment()}" style="width: 100%;background-color: #dd666c;border: none " oncomplete="PF('sidebar1').hide()"/>  <br/><br/>
+                </p:sidebar>
+
+            </h:form>
+        <h:form>
+            <p:card style="margin-top: 3%;margin-left: 30%;margin-right: 30%;background-color:#eff9f8;box-shadow: 2px 2px 2px #eff9f8" >
+                <h2 align="center" style="color: #3b7771">Select Your Wedding Date</h2>
+                <div style="margin-top: 10%">
+                    <p:outputLabel style="margin-left: 33%" value="Start Date "><i class="pi pi-calendar" ></i></p:outputLabel>
+          <br/><br/>
+          <p:calendar style="margin-left: 33%"  pattern="dd/MM/yyyy HH:mm:ss" title="date" mode="popup"  value="#{weddingManagedBean.start_time_planned}"/>
+          <br/><br/>
+          <p:outputLabel style="margin-left: 33%" value="End Date "><i class="pi pi-calendar" ></i></p:outputLabel>
+                 <br/><br/>
+                 <p:calendar style="margin-left: 33%" pattern="dd/MM/yyyy HH:mm:ss" title="date" mode="popup" value="#{weddingManagedBean.end_time_planned}"/>
+                <br/><br/>
+                </div>
+                <p:commandButton style="margin-top: 8%;background-color: #3b7771;color: #ffffff;margin-left: 15%;width: 30% " value="submit" action="#{weddingManagedBean.addWedding()}"/>
+                <p:commandButton value="Already Selected" action="#{weddingManagedBean.AlredySelectDate()}" style="margin-left: 10%;;background-color: #3b7771;;color: #ffffff;width: 30%"/>
+            </p:card>
+        </h:form>
+    </h:body>
+</html>

@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+       xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+          <style>
+            body .ui-panelgrid .ui-panelgrid-cell {
+                border:#ffffff
+            }
+        </style>
+    </h:head>
+    <h:body>
+<!--        <h:form>
+            <link href="https://buy.stripe.com/test_3cs3ep9zQ3Mr6Na7ss">Pay</link>
+        </h:form>
+        <a href="https://buy.stripe.com/test_3cs3ep9zQ3Mr6Na7ss">pay</a>
+        
+        <h:form>
+            <h:commandButton value="pay" action="#{paymentManagedBean.pay()}"/>
+        </h:form>-->
+        <div class="card" >
+            <p:panelGrid columns="4">
+            <center>
+                <span class="align-left">
+            <p:card style="height: 550px ; width: 500px; margin-top: 100px; margin-left: 200px">
+                    <i class="pi pi-eject"></i>
+                    <p:outputLabel value="TEST MODE" style="background-color: #FFDB58;color: #E49B0F; margin-left: 10px"/><br/><br/>
+                    <p:outputLabel value="The Real Wedding"/><br/><br/>
+                    <img src="../Resource/images/rupees.png" style="height: 5%; width: 5%"/>
+                    <p:inputText value="1.00" style="border: 0px; font-size: 30px"/>
+                    
+                    <img src="../resources/image/wed_couple.png" style="height: 50%; width: 50%; margin-left: 110px; margin-top: 30px"/>
+            </p:card>
+                </span>
+                <span class="align-right">
+            <p:card style="height: 550px; width: 500px; margin-top: 100px">
+                <p:outputLabel value="Pay with Card" style="font-size: 30px"/><br/><br/>
+                <p:outputLabel value="Email" style="font-size: 15px"/><br/>
+                <p:inputText style="width: 400px"/><br/><br/>
+                <p:outputLabel value="Card Information" style="font-size: 15px"/><br/>
+                <p:inputText placeholder="1234 1234 1234 1234" style="width: 400px"/><br/>
+                <p:inputText placeholder="MM/YY" style="width: 200px"/>
+                <p:inputText placeholder="CVC" style="width: 200px"/><br/><br/> 
+                 <p:outputLabel value="Name on Card" style="font-size: 15px"/><br/>
+                 <p:inputText style="width: 400px"/><br/><br/>
+                 <p:outputLabel value="Country or region" style="font-size: 15px"/><br/>
+                 <p:selectOneMenu id="option" value="#{selectOneMenuView.selectedOption}" style="width:400px ">
+                    <f:selectItem itemLabel="India" itemValue=""/>
+                    <f:selectItem itemLabel="Thailand" itemValue="Thailand"/>
+                    <f:selectItem itemLabel="Dubai" itemValue="Dubai"/>
+                    <f:selectItem itemLabel="Sri Lanka" itemValue="Sri Lanka"/>
+                 </p:selectOneMenu><br/><br/>
+                  <p:button value="Pay" disabled="false" style="width: 400px"/>
+            </p:card>
+                </span>
+            </center>
+            </p:panelGrid>
+        </div>
+    </h:body>
+</html>

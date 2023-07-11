@@ -1,0 +1,47 @@
+/*
+#map{
+
+height : 400px;
+width : 100%
+
+}
+
+.container{
+    text-align: center;
+}
+
+input, button, .results{
+    font-size: 25px;
+}
+
+.results{
+    width: 40%;
+    page-break-after: 5;
+}
+
+input{
+    width: 500px;
+}*/
+
+#map{
+    height: 500px;
+    width: 100%;
+    border: 10px solid #ccc;
+}
+
+#button{
+    margin-top: 10px;
+    height: 30px;
+    width: 100px;
+    background-color: rgb(245, 245, 247);
+    font-size: larger;
+    color: rgb(28, 28, 25);
+    padding: 15px 32px;
+    text-align: center;
+}
+
+#autocomplete{
+    width: 25%;
+    height: 15px;
+    padding: 10px;
+}

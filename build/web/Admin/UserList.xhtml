@@ -1,0 +1,92 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <f:view>
+               <div id="header" >
+<!--                <ui:insert name="header" >
+                    <ui:include  src="../Template/header.xhtml"/>
+
+                </ui:insert>-->
+            </div>
+            <br/><br/>
+            
+            <h:form id="toggle" > 
+                <p:commandButton  icon="pi pi-bars" style="background-color:#ffffff;height: 30% ;border: none;margin-left: 2%;margin-bottom: 2%;color: #dd666c" oncomplete="PF('sidebar1').show()"/>
+                <h:outputText value="The Real Wedding" style="margin-left: 38%;font-size: 200%;color: #dd666c"/>
+                  <span style="margin-left: 35%">
+                    <p:commandButton icon="pi pi-sign-out" styleClass="rounded-button" style="background-color:#dd666c;border: none " action="#{providedPlannerServiceManagedBean.plannerLogout()}"/>
+                </span>
+                <p:sidebar widgetVar="sidebar1" >
+                <br/><br/>
+                 <h:graphicImage url="/Resource/images/logo.jpg" style="background-color: #ffffff" height="85px" width="100%"></h:graphicImage><br/><br/>
+                <p:commandButton value="Home" action="#{plannerManagedBean.gotoAdminHome()}" style="width: 100%;background-color: #dd666c;border: none" oncomplete="PF('sidebar1').hide()"/>  <br/><br/>
+                <p:commandButton value="Planner List" action="#{plannerManagedBean.gotoPlannerList()}" style="width: 100%;background-color: #dd666c;border: none " oncomplete="PF('sidebar1').hide()"/><br/><br/>
+                <p:commandButton value="User List" action="#{plannerManagedBean.gotoUserList()}" style="width: 100%;background-color: #dd666c;border: none " oncomplete="PF('sidebar1').hide()"/>  <br/><br/>
+                 <p:commandButton value="Service List" action="#{plannerManagedBean.gotoServiceList()}" style="width: 100%;background-color: #dd666c;border: none " oncomplete="PF('sidebar1').hide()"/>  <br/><br/>
+                </p:sidebar>
+            </h:form>
+
+
+            <h:form>
+               
+                <p:dataTable  first="0"  sortMode="multiple" rows="5" value="#{userManageBean.showAllUser}" var="item" widgetVar="dtuser"  paginator="true" paginatorPosition="bottom">
+                    
+                    <f:facet name="header">
+                            <div class="user-table-header">
+                                <span style="font-weight: bold">USERS</span>
+                                <span class="filter-container ui-input-icon-left"> <i class="pi pi-search"></i>
+                                    <p:inputText id="globalFilter" onkeyup="PF('dtuser').filter()" placeholder="Search" />
+                                </span>
+                            </div>
+                        </f:facet>
+                    <p:column style="background-color: #dff3f1">
+                        <f:facet name="header">
+                            <h:outputText value="#Queue"/>
+                        </f:facet>
+                        <h:outputText value="#{item.userId}"/>
+                    </p:column>
+                    <p:column style="background-color: #dff3f1" sortBy="#{item.firstName}" filterBy="#{item.firstName}">
+                        <f:facet name="header" >
+                            <h:outputText value="FirstName" />
+                        </f:facet>
+                        <h:outputText value="#{item.firstName}"/>
+                    </p:column>
+                    <p:column style="background-color: #dff3f1" sortBy="#{item.lastName}" filterBy="#{item.lastName}">
+                        <f:facet name="header">
+                            <h:outputText value="LastName"/>
+                        </f:facet>
+                        <h:outputText value="#{item.lastName}"/>
+                    </p:column>
+                    <p:column style="background-color: #dff3f1">
+                        <f:facet name="header">
+                            <h:outputText value="UserCode"/>
+                        </f:facet>
+                        <h:outputText value="#{item.userCode}"/>
+                    </p:column>
+                    <p:column style="background-color: #dff3f1">
+                        <f:facet name="header">
+                            <h:outputText value="UserEmail"/>
+                        </f:facet>
+                        <h:outputText value="#{item.userEmail}"/>
+                    </p:column>
+<!--                    <p:column style="background-color: #dff3f1">
+                        <f:facet name="header">
+                            <h:outputText value="UserPassword"/>
+                        </f:facet>
+                        <h:outputText value="#{item.userPassword}"/>
+                    </p:column>-->
+                    
+                </p:dataTable>
+            </h:form>
+        </f:view>
+
+    </h:body>
+</html>

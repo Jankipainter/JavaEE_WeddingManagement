@@ -1,0 +1,152 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <!--<h:outputStylesheet name="./css/default.css"/>-->
+        <!--<h:outputStylesheet name="./css/cssLayout.css"/>-->
+        <title>Facelets Template</title>
+        <link rel="stylesheet" href="../resources/css/cssLayout.css"/>
+        <link rel="stylesheet" href="../Resource/css/sidebar.css"/>
+    </h:head>
+    <h:body>
+
+        <f:view>
+
+
+                            <div id="header" >
+                         </div>
+            <br/><br/>
+            <!--#63c7bd-->
+
+            <h:form id="toggle" > 
+
+                <p:commandButton  icon="pi pi-bars" style="background-color:#ffffff;height: 30% ;border: none;margin-left: 2%;margin-bottom: 2%;color: #dd666c" oncomplete="PF('sidebar1').show()"/>
+
+                <h:outputText value="The Real Wedding" style="margin-left: 38%;font-size: 200%;color: #dd666c"/>
+                <span style="margin-left: 35%">
+                    <p:commandButton icon="pi pi-sign-out" styleClass="rounded-button" style="background-color:#dd666c;border: none " action="#{providedPlannerServiceManagedBean.plannerLogout()}"/>
+                </span>
+                <p:sidebar widgetVar="sidebar1" >
+                    <br/><br/>
+                    <h:graphicImage url="/Resource/images/logo.jpg" style="background-color: #ffffff" height="85px" width="100%"></h:graphicImage><br/><br/>
+                    <p:commandButton value="Home" action="#{plannerManagedBean.gotoAdminHome()}" style="width: 100%;background-color: #dd666c;border: none" oncomplete="PF('sidebar1').hide()"/>  <br/><br/>
+                    <p:commandButton value="Planner List" action="#{plannerManagedBean.gotoPlannerList()}" style="width: 100%;background-color: #dd666c;border: none " oncomplete="PF('sidebar1').hide()"/><br/><br/>
+                    <p:commandButton value="User List" action="#{plannerManagedBean.gotoUserList()}" style="width: 100%;background-color: #dd666c;border: none " oncomplete="PF('sidebar1').hide()"/>  <br/><br/>
+                     <p:commandButton value="Service List" action="#{plannerManagedBean.gotoServiceList()}" style="width: 100%;background-color: #dd666c;border: none " oncomplete="PF('sidebar1').hide()"/>  <br/><br/>
+                </p:sidebar>
+
+            </h:form>
+
+            <div class="card crud-demo">
+                <h:form id="form" >
+                    <p:growl id="messages" showDetail="true" />
+
+                  
+                    <p:dataTable  first="0"  sortMode="multiple" rows="5" value="#{plannerManagedBean.showAllPlanner()}" widgetVar="dtPlanner" var="item" paginator="true" paginatorPosition="bottom">
+                        <f:facet name="header">
+                            <div class="planner-table-header">
+                                
+                                <p:toolbar>
+                                    <p:toolbarGroup>
+                                        <p:commandButton value="New" icon="pi pi-plus" style="background-color: #3b7771;color: #ffffff; border: none;margin-top: 3%" action="#{plannerManagedBean.goToAdd()}"/>
+                                    </p:toolbarGroup>
+                                    <p:toolbarGroup align="right" class="filter-container ui-input-icon-left">
+                                        <i class="pi pi-search"></i>
+                                    <p:inputText id="globalFilter" onkeyup="PF('dtPlanner').filter()" placeholder="Search" />
+                                    </p:toolbarGroup>
+                                </p:toolbar>
+<!--                                <span>
+                                    <p:commandButton value="New" icon="pi pi-plus" style="background-color: #3b7771;color: #ffffff; border: none;margin-top: 3%" action="#{plannerManagedBean.goToAdd()}"/>
+                                </span>
+                                <span class="filter-container ui-input-icon-left" style="margin-left: 85%"> <i class="pi pi-search"></i>
+                                    <p:inputText id="globalFilter" onkeyup="PF('dtPlanner').filter()" placeholder="Search" />
+                                </span>-->
+                            </div>
+                        </f:facet>
+
+                        <p:column  style="background-color: #dff3f1">
+                            <f:facet name="header">
+                                <h:outputText value="PlannerId"/>
+                            </f:facet>
+                            <h:outputText value="#{item.plannerId}" />
+                        </p:column>
+                        <p:column style="background-color: #dff3f1" headerText="Planner Code"  sortBy="#{item.plannerCode}" filterBy="#{item.plannerCode}" >
+
+                            <h:outputText value="#{item.plannerCode}"/>
+                        </p:column>
+                        <p:column style="background-color: #dff3f1" sortBy="#{item.plannerName}" filterBy="#{item.plannerName}">
+                            <f:facet name="header">
+                                <h:outputText value="PlannerName"/>
+                            </f:facet>
+                            <h:outputText value="#{item.plannerName}"/>
+                        </p:column>
+                        <p:column style="background-color: #dff3f1" sortBy="#{item.plannerEmail}" filterBy="#{item.plannerEmail}">
+                            <f:facet name="header">
+                                <h:outputText value="PlannerEmail"/>
+                            </f:facet>
+                            <h:outputText value="#{item.plannerEmail}"/>
+                        </p:column>
+<!--                        <p:column style="background-color: #dff3f1">
+                            <f:facet name="header">
+                                <h:outputText value="PlannerPassword"/>
+                            </f:facet>
+                            <h:outputText value="#{item.plannerPassword}"/>
+                        </p:column>-->
+                        <p:column style="background-color: #dff3f1">
+                            <f:facet name="header">
+                                <h:outputText value="Send Mail"/>
+                            </f:facet>
+                            <p:commandButton id="msg1" icon="pi pi-envelope" style="font-size: 2rem; background-color: #dff3f1 ;color: black;border: none"  action="#{plannerManagedBean.send(item.plannerEmail,item.plannerPassword)}" onclick="MessageSend()">
+                                <!--<i class="pi pi-send" style="font-size: 2rem"></i>-->
+                            </p:commandButton>
+
+                        </p:column>
+
+                        <p:column style="background-color: #dff3f1">
+                            <f:facet name="header">
+                                <h:outputText value="Update"/>
+                            </f:facet>
+                            <h:commandLink action="#{plannerManagedBean.goToPlannerEdit(item.plannerId)}">
+                                <p:graphicImage url="/resources/image/edit.png" style="height: 20px; width: 30px"/>
+                            </h:commandLink>
+                        </p:column>
+                        <p:column style="background-color: #dff3f1">
+                            <f:facet name="header">
+                                <h:outputText value="Delete"/>
+                            </f:facet>
+                            <h:commandLink action="#{plannerManagedBean.plannerRemove(item.plannerId, item.roleId.roleId)}" onclick="return confirm('Are You Sure You Want To Delete? (Y/N)')">
+                                <p:graphicImage url="/resources/image/delete.png" style="height: 20px; width: 30px"/>
+                            </h:commandLink>
+                        </p:column>
+                        <p:column style="background-color: #dff3f1">
+                            <f:facet name="header">
+                                <h:outputText value="Planner Detail"/>
+                            </f:facet>
+                            <h:commandLink action="#{plannerServiceManagedBean.viewDetail(item.plannerId)}">
+                                <p:graphicImage url="/resources/image/detail.jpeg" style="height: 20px; width: 30px" />
+                            </h:commandLink>
+                        </p:column>
+                    </p:dataTable>
+                </h:form>
+            </div>
+
+
+
+
+            <!--</h:form>-->
+        </f:view>
+        <script>
+            function MessageSend() {
+
+//    if(document.getElementById('msg1').onfocus)
+                alert("Message Send Succesfully");
+
+            }
+        </script>
+
+    </h:body>
+</html>

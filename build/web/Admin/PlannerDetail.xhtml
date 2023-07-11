@@ -1,0 +1,82 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <br/><br/>
+            
+            <h:form id="toggle" > 
+                <p:commandButton  icon="pi pi-bars" style="background-color:#ffffff;height: 30% ;border: none;margin-left: 2%;margin-bottom: 2%;color: #dd666c" oncomplete="PF('sidebar1').show()"/>
+                <h:outputText value="The Real Wedding" style="margin-left: 38%;font-size: 200%;color: #dd666c"/>
+                  <span style="margin-left: 35%">
+                    <p:commandButton icon="pi pi-sign-out" styleClass="rounded-button" style="background-color:#dd666c;border: none " action="#{providedPlannerServiceManagedBean.plannerLogout()}"/>
+                </span>
+                <p:sidebar widgetVar="sidebar1" >
+                <br/><br/>
+                 <h:graphicImage url="/Resource/images/logo.jpg" style="background-color: #ffffff" height="85px" width="100%"></h:graphicImage><br/><br/>
+                <p:commandButton value="Home" action="#{plannerManagedBean.gotoAdminHome()}" style="width: 100%;background-color: #dd666c;border: none" oncomplete="PF('sidebar1').hide()"/>  <br/><br/>
+                <p:commandButton value="Planner List" action="#{plannerManagedBean.gotoPlannerList()}" style="width: 100%;background-color: #dd666c;border: none " oncomplete="PF('sidebar1').hide()"/><br/><br/>
+                <p:commandButton value="User List" action="#{plannerManagedBean.gotoUserList()}" style="width: 100%;background-color: #dd666c;border: none " oncomplete="PF('sidebar1').hide()"/>  <br/><br/>
+                 <p:commandButton value="Service List" action="#{plannerManagedBean.gotoServiceList()}" style="width: 100%;background-color: #dd666c;border: none " oncomplete="PF('sidebar1').hide()"/>  <br/><br/>
+                </p:sidebar>
+            </h:form>
+      
+       
+            
+                <f:view>
+
+
+                    <h:form>
+                         <h1><h:outputText value="Services"/></h1>
+                        <p:dataTable value="#{plannerServiceManagedBean.getServiceByPlannerId}" var="item">
+                            <p:column style="background-color: #dff3f1">
+                                <f:facet name="header">
+                                    <h:outputText value="ProvideServiceId"/>
+                                </f:facet>
+                                <h:outputText value="#{item.provideServiceId}"/>
+                            </p:column>
+                            <p:column style="background-color: #dff3f1">
+                                <f:facet name="header">
+                                    <h:outputText value="Details"/>
+                                </f:facet>
+                                <h:outputText value="#{item.details}"/>
+                            </p:column>
+                            <p:column style="background-color: #dff3f1">
+                                <f:facet name="header">
+                                    <h:outputText value="IsActive"/>
+                                </f:facet>
+                                <h:outputText value="#{item.isActive}"/>
+                            </p:column>
+                            <p:column style="background-color: #dff3f1">
+                                <f:facet name="header">
+                                    <h:outputText value="Planner"/>
+                                </f:facet>
+                                <h:outputText value="#{item.planner.plannerName}"/>
+                            </p:column>
+                            <p:column style="background-color: #dff3f1">
+                                <f:facet name="header">
+                                    <h:outputText value="Service"/>
+                                </f:facet>
+                                <h:outputText value="#{item.service.serviceName}"/>
+                            </p:column>
+                            <p:column style="background-color: #dff3f1">
+                                <f:facet name="header">
+                                    <h:outputText value="Religion"/>
+                                </f:facet>
+                                <h:outputText value="#{item.service.religion.religionName}"/>
+                            </p:column>
+                        </p:dataTable>
+                    </h:form>
+                    <br/><br/><br/>
+                    <p:commandButton value="Back" style="background-color: #3b7771;margin-left: 50%" action="#{plannerManagedBean.goToPlannerList()}"/>
+                </f:view>
+
+    
+       
+    </h:body>
+</html>

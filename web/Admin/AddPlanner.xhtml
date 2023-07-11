@@ -1,0 +1,73 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <h:outputStylesheet name="./css/default.css"/>
+        <h:outputStylesheet name="./css/cssLayout.css"/>
+        <title>Facelets Template</title>
+        <link rel="stylesheet" href="../resources/css/cssLayout.css"/>
+    </h:head>
+    <f:view>
+        <h:body>
+            <br/><br/>
+            
+            <h:form id="toggle" > 
+                <p:commandButton  icon="pi pi-bars" style="background-color:#ffffff;height: 30% ;border: none;margin-left: 2%;margin-bottom: 2%;color: #dd666c" oncomplete="PF('sidebar1').show()"/>
+                <h:outputText value="The Real Wedding" style="margin-left: 38%;font-size: 200%;color: #dd666c"/>
+                  <span style="margin-left: 35%">
+                    <p:commandButton icon="pi pi-sign-out" styleClass="rounded-button" style="background-color:#dd666c;border: none " action="#{providedPlannerServiceManagedBean.plannerLogout()}"/>
+                </span>
+                <p:sidebar widgetVar="sidebar1" >
+                <br/><br/>
+                 <h:graphicImage url="/Resource/images/logo.jpg" style="background-color: #ffffff" height="85px" width="100%"></h:graphicImage><br/><br/>
+                <p:commandButton value="Home" action="#{plannerManagedBean.gotoAdminHome()}" style="width: 100%;background-color: #dd666c;border: none" oncomplete="PF('sidebar1').hide()"/>  <br/><br/>
+                <p:commandButton value="Planner List" action="#{plannerManagedBean.gotoPlannerList()}" style="width: 100%;background-color: #dd666c;border: none " oncomplete="PF('sidebar1').hide()"/><br/><br/>
+                <p:commandButton value="User List" action="#{plannerManagedBean.gotoUserList()}" style="width: 100%;background-color: #dd666c;border: none " oncomplete="PF('sidebar1').hide()"/>  <br/><br/>
+                 <p:commandButton value="Service List" action="#{plannerManagedBean.gotoServiceList()}" style="width: 100%;background-color: #dd666c;border: none " oncomplete="PF('sidebar1').hide()"/>  <br/><br/>
+                </p:sidebar>
+            </h:form>
+            <h:form>
+                
+                <br/><br/>
+                 <p:card style="margin-left:35%;margin-right:35%;margin-top: 2%;background-color:#eff9f8;box-shadow: 2px 2px 2px #eff9f8">
+                 <center>
+                     <h1><h:outputText style="color: #3b7771" value="Add Planner"/></h1>
+                <h:panelGrid columns="1">
+                    <h:outputLabel for="code" value="Planner Code"/>
+                    <p:inputText id="code" value="#{plannerManagedBean.planner_code}"/><br/>
+                   
+                    
+                    <h:outputLabel  for="name" value="Planner Name"/>
+                    <p:inputText id="name" value="#{plannerManagedBean.planner_name}" required="true" requiredMessage="Enter Name" >
+                   <f:validateLength minimum="2" />  
+                   <!--<f:validateRegex pattern="[a-z][A-Z]"/>-->
+                    </p:inputText>
+                    <p:message for="name" display="icon" />
+                    
+                    
+<!--                    <h:outputLabel for="id" value="Role Id"/>
+                    <p:selectOneMenu value="#{plannerManagedBean.role_id}">
+                        <f:selectItems value="#{plannerManagedBean.getRole()}" var="plan" itemLabel="#{plan.roleName}" itemValue="#{plan.roleId}"/>
+                    
+                    </p:selectOneMenu>-->
+                    <h:outputLabel for="email" value="PlannerEmail"/>
+                    <p:inputText id="email" value="#{plannerManagedBean.planner_email}"/>
+                   
+                    
+<!--                    <h:outputLabel for="pass" value="Planner Password"/>
+                    <p:inputText id="pass" value="#{plannerManagedBean.planner_password}"/>-->
+                    <!--<h:inputText id="plannerPassword" value="#{plannerManagedBean.planner_password}"/>-->
+
+                </h:panelGrid>
+                     <p:commandButton value="Add" style="background-color: #3b7771" action="#{plannerManagedBean.addPlanner()}"/>
+                 </center>
+                 </p:card>
+            </h:form>
+           
+        </h:body>
+    </f:view>
+</html>

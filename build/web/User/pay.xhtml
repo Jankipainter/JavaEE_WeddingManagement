@@ -1,0 +1,116 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+        <style>
+            body .ui-panelgrid .ui-panelgrid-cell {
+                border:#ffffff
+            }
+        </style>
+    </h:head>
+    <h:body >
+          <br/>
+        <h:form id="toggle" > 
+
+                <p:commandButton  icon="pi pi-bars" style="background-color:#ffffff;height: 30% ;border: none;margin-left: 2%;margin-bottom: 2%;color: #dd666c" oncomplete="PF('sidebar1').show()"/>
+
+                <h:outputText value="The Real Wedding" style="margin-left: 38%;font-size: 200%;color: #dd666c"/>
+                <span style="margin-left: 32%">
+                    <p:commandButton icon="pi pi-user" styleClass="rounded-button" style="background-color:#dd666c;border: none " action="#{userManageBean.viewuser()}"/>
+                </span>
+                <span style="margin-left: 2%">
+                    <p:commandButton icon="pi pi-sign-out" styleClass="rounded-button" style="background-color:#dd666c;border: none " action="#{providedPlannerServiceManagedBean.plannerLogout()}"/>
+                </span>
+                <p:sidebar widgetVar="sidebar1" >
+                    <br/><br/>
+                    <h:graphicImage url="/Resource/images/logo.jpg" style="background-color: #ffffff" height="85px" width="100%"></h:graphicImage><br/><br/>
+                    <p:commandButton value="Wedding Date" action="#{weddingManagedBean.goToWeddingDate()}" style="width: 100%;background-color: #dd666c;border: none" oncomplete="PF('sidebar1').hide()"/>  <br/><br/>
+                    <p:commandButton value="Select Services" action="#{weddingManagedBean.AlredySelectDate()}" style="width: 100%;background-color: #dd666c;border: none" oncomplete="PF('sidebar1').hide()"/>  <br/><br/>
+                    <p:commandButton value="Select Planner" action="#{userManageBean.afterSelectService()}" style="width: 100%;background-color: #dd666c;border: none " oncomplete="PF('sidebar1').hide()"/><br/><br/>
+                    <p:commandButton value="Selected Services" action="#{eventManagedBean.goToSelectService()}" style="width: 100%;background-color: #dd666c;border: none " oncomplete="PF('sidebar1').hide()"/><br/><br/>
+                    <p:commandButton value="Add Event" action="#{eventManagedBean.goToEvent()}" style="width: 100%;background-color: #dd666c;border: none " oncomplete="PF('sidebar1').hide()"/>  <br/><br/>
+                    <p:commandButton value="Payment" action="#{paymentManagedBean.goToPayment()}" style="width: 100%;background-color: #dd666c;border: none " oncomplete="PF('sidebar1').hide()"/>  <br/><br/>
+                </p:sidebar>
+
+            </h:form>
+
+        <h:form>
+            <p:toolbar>
+                <p:toolbarGroup align="right">
+                    <div id="show">
+                    <p:commandButton id="invoice"  class="negative" action="#{paymentManagedBean.Invoice()}" value="Invoice" style="background-color: #3b7771" />
+                    </div>
+                </p:toolbarGroup>
+            </p:toolbar>
+            <div class="card" >
+                <p:panelGrid columns="4">
+                    <center>
+                        <span class="align-left">
+                            <p:card style="height: 550px ; width: 500px; margin-top: 5%; margin-left: 200px">
+                                <i class="pi pi-eject"></i>
+                                <p:outputLabel value="TEST MODE" style="background-color: #FFDB58;color: #E49B0F; margin-left: 10px"/><br/><br/>
+                                <p:outputLabel value="The Real Wedding"/><br/><br/>
+                                <img src="../Resource/images/rupees.png" style="height: 5%; width: 5%"/>
+                                <p:outputLabel  style="border: 0px; font-size: 30px">#{session.getAttribute("Total")}</p:outputLabel>
+
+                                <img src="../resources/image/wed_couple.png" style="height: 50%; width: 50%; margin-left: 110px; margin-top: 30px"/>
+                            </p:card>
+                        </span>
+                        <span class="align-right">
+                            <p:card style="height: 550px; width: 500px; margin-top: 5%">
+                                <p:outputLabel value="Pay with Card" style="font-size: 30px"/><br/><br/>
+                                <p:outputLabel value="Email" style="font-size: 15px"/><br/>
+                                <p:outputLabel style="width: 400px;font-size: 20px">#{session.getAttribute("UserEmail")}</p:outputLabel><br/><br/>
+                                <p:outputLabel value="Card Information" style="font-size: 15px"/><br/>
+                                <p:inputText placeholder="1234 1234 1234 1234" style="width: 400px"/><br/>
+                                <p:inputText placeholder="MM/YY" style="width: 200px"/>
+                                <p:inputText placeholder="CVC" style="width: 200px"/><br/><br/> 
+                                <p:outputLabel value="Name on Card" style="font-size: 15px"/><br/>
+                                <p:inputText style="width: 400px"/><br/><br/>
+                                <p:outputLabel value="Country or region" style="font-size: 15px"/><br/>
+                                <p:selectOneMenu id="option"  style="width:400px ">
+                                    <f:selectItem itemLabel="India" itemValue="India"/>
+                                    <f:selectItem itemLabel="Thailand" itemValue="Thailand"/>
+                                    <f:selectItem itemLabel="Dubai" itemValue="Dubai"/>
+                                    <f:selectItem itemLabel="Sri Lanka" itemValue="Sri Lanka"/>
+                                </p:selectOneMenu><br/><br/>
+                                <p:commandButton id="pay" action="#{paymentManagedBean.payment()}" onclick="show()" class="positive" oncomplete="PF('SuccessDialog').show()" value="Pay" disabled="false" style="width: 400px;background-color: #3b7771"/>
+                            </p:card>
+                        </span>
+                    </center>
+                </p:panelGrid>
+            </div>
+        </h:form>
+        <h:form id="dialogs">
+            <p:dialog widgetVar="SuccessDialog">
+                <img src="../resources/image/payment.png"/>
+            </p:dialog>
+        </h:form>
+
+        <script>
+           
+           function show(){
+                document.getElementById("show").style.height="50%";
+           }
+//            let input = document.getElementById('pay');
+//            let button = document.getElementById('invoice');
+//
+//            button.disabled = true; //setting button state to disabled
+//            
+//            input.addEventListener("change", stateHandle);
+//
+//            function stateHandle() {
+//                if (document.getElementById('pay').click()) {
+//                    button.disabled = false; //button remains enabled
+//                } else {
+//                    alert('You Need To Pay First');
+//                    button.disabled = true; //button is disable
+//                }
+//            }
+        </script>
+    </h:body>
+</html>

@@ -1,0 +1,118 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+          
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        
+<!--        <h:form>
+            <p:outputLabel value="Planner Email :"/>
+            <p:outputLabel value="planner">
+                #{session.getAttribute('PlannerEmail')},#{session.getAttribute('PlannerName')},#{session.getAttribute('Planner_Id')}
+            </p:outputLabel>
+          
+
+        </h:form>-->
+        <f:view>
+               <div id="header" >
+                         </div>
+            <br/><br/>
+            <!--#63c7bd-->
+
+            <h:form id="toggle" > 
+
+                <p:commandButton  icon="pi pi-bars" style="background-color:#ffffff;height: 30% ;border: none;margin-left: 2%;margin-bottom: 2%;color: #dd666c" oncomplete="PF('sidebar1').show()"/>
+
+                <h:outputText value="The Real Wedding" style="margin-left: 38%;font-size: 200%;color: #dd666c"/>
+                 <span style="margin-left: 32%">
+                     <p:commandButton icon="pi pi-user" styleClass="rounded-button" style="background-color:#dd666c;border: none " action="#{providedPlannerServiceManagedBean.viewPlannerProfile()}"/>
+                </span>
+                <span style="margin-left: 2%">
+                    <p:commandButton icon="pi pi-sign-out" styleClass="rounded-button" style="background-color:#dd666c;border: none " action="#{providedPlannerServiceManagedBean.plannerLogout()}"/>
+                </span>
+                <p:sidebar widgetVar="sidebar1" >
+                    <br/><br/>
+                    <h:graphicImage url="/Resource/images/logo.jpg" style="background-color: #ffffff" height="85px" width="100%"></h:graphicImage><br/><br/>
+                    <p:commandButton value="Home" action="#{plannerManagedBean.gotoplannerhome()}" style="width: 100%;background-color: #dd666c;border: none" oncomplete="PF('sidebar1').hide()"/>  <br/><br/>
+                    <p:commandButton value="Add Service" action="#{plannerManagedBean.gotoplannerAddservice()}" style="width: 100%;background-color: #dd666c;border: none " oncomplete="PF('sidebar1').hide()"/><br/><br/>
+                    <p:commandButton value="Users" action="#{plannerManagedBean.gotoSelectList()}" style="width: 100%;background-color: #dd666c;border: none " oncomplete="PF('sidebar1').hide()"/>  <br/><br/>
+                </p:sidebar>
+
+            </h:form>
+            
+             <div class="card crud-demo">
+                <h:form id="form" >
+                    <p:growl id="messages" showDetail="true" />
+
+                  
+                    <p:dataTable  first="0"  sortMode="multiple" rows="5" value="#{providedPlannerServiceManagedBean.getServiceByPlanner}" widgetVar="dtPlannerService" var="item" paginator="true" paginatorPosition="bottom">
+                        <f:facet name="header">
+                            <div class="planner-table-header">
+                                
+                                <p:toolbar>
+                                    <p:toolbarGroup>
+                                        <p:commandButton value="New" icon="pi pi-plus" style="background-color: #3b7771;color: #ffffff; border: none;margin-top: 3%" action="#{providedPlannerServiceManagedBean.goToPSAdd()}"/>
+                                    </p:toolbarGroup>
+                                    <p:toolbarGroup align="right" class="filter-container ui-input-icon-left">
+                                        <i class="pi pi-search"></i>
+                                    <p:inputText id="globalFilter" onkeyup="PF('dtPlannerService').filter()" placeholder="Search" />
+                                    </p:toolbarGroup>
+                                </p:toolbar>
+                            </div>
+                        </f:facet>
+                <!--<h1><h:outputText value="List"/></h1>-->
+                <!--<p:dataTable value="#{providedPlannerServiceManagedBean.getServiceByPlanner}" var="item">-->
+                    <p:column style="background-color: #dff3f1">
+                        <f:facet name="header">
+                            <h:outputText value="ProvideServiceId"/>
+                        </f:facet>
+                        <h:outputText value="#{item.provideServiceId}"/>
+                    </p:column>
+                <p:column style="background-color: #dff3f1" sortBy="#{item.details}" filterBy="#{item.details}">
+                        <f:facet name="header">
+                            <h:outputText value="Details"/>
+                        </f:facet>
+                        <h:outputText value="#{item.details}"/>
+                    </p:column>
+                    <p:column style="background-color: #dff3f1">
+                        <f:facet name="header">
+                            <h:outputText value="IsActive"/>
+                        </f:facet>
+                        <h:outputText value="#{item.isActive}"/>
+                    </p:column>
+                    <p:column style="background-color: #dff3f1">
+                        <f:facet name="header">
+                            <h:outputText value="Planner"/>
+                        </f:facet>
+                        <h:outputText value="#{item.planner.plannerName}"/>
+                    </p:column>
+                <p:column style="background-color: #dff3f1" sortBy="#{item.service.serviceName}" filterBy="#{item.service.serviceName}">
+                        <f:facet name="header">
+                            <h:outputText value="Service"/>
+                        </f:facet>
+                        <h:outputText value="#{item.service.serviceName}"/>
+                    </p:column>
+                    <p:column style="background-color: #dff3f1">
+                        <f:facet name="header">
+                            <h:outputText value=""/>
+                        </f:facet>
+                        <span>
+                            <p:commandButton styleClass="rounded-button" icon="pi pi-pencil" style="background-color: #3b7771"  action="#{providedPlannerServiceManagedBean.providedServiceEdit(item.provideServiceId)}"/>
+                        </span>
+                        <span>
+                        <p:commandButton class="rounded-button" icon="pi pi-trash" style="background-color: #3b7771;margin-left: 20px"  action="#{providedPlannerServiceManagedBean.psDel(item.provideServiceId, item.planner.plannerId, item.service.serviceId)}" onclick="confirm('Are You Sure You Want To Delete?')"/>
+                        </span>
+ <!--<h:outputText value="#{item.service.serviceName}"/>-->
+                    </p:column>
+                </p:dataTable>
+            </h:form>
+             </div>
+        </f:view>
+
+    </h:body>
+</html>

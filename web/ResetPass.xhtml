@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+          <link rel="stylesheet" href="Resource/css/bootstrap.min.css"/>
+    <!-- Pogo Slider CSS -->
+    <link rel="stylesheet" href="Resource/css/pogo-slider.min.css"/>
+	<!-- Site CSS -->
+    <link rel="stylesheet" href="Resource/css/style.css"/>  
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+          <header class="top-header">
+		<nav class="navbar header-nav navbar-expand-lg">
+            <div class="container">
+                <a class="navbar-brand" href="index.html"><img src="Resource/images/logo.jpg" alt="image"></img></a>
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-wd" aria-controls="navbar-wd" aria-expanded="false" aria-label="Toggle navigation">
+					<span></span>
+					<span></span>
+					<span></span>
+				</button>
+                <div class="collapse navbar-collapse justify-content-end" id="navbar-wd">
+                    <ul class="navbar-nav">
+                        <li><a class="nav-link active" href="http://localhost:8080/RealWeddingProject/">Home</a></li>
+                        <li><a class="nav-link" href="#about">About Us</a></li>
+                        <li><h:link class="nav-link" value="Login " outcome="loginpage"/></li>
+                        <li><h:link class="nav-link" value="Register" outcome="Register"/></li>
+                        <li><a class="nav-link" href="#gallery">Gallery</a></li>
+                        <li><a class="nav-link" href="#events">Events</a></li>
+						<li><a class="nav-link" href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+	</header>
+            <br/><br/>
+        <h:form>
+            <p:card style="margin-left:35%;margin-right:35%;margin-top: 2%;background-color:#eff9f8;box-shadow: 2px 2px 2px #eff9f8">
+                <center>
+                <h3>For OTP Check Your Mail</h3>
+                <p:outputLabel value="Email"/>
+                <p:inputText value="#{forgotPassManagedBean.user_email}"/>
+                <br/><br/>
+               
+                 <p:outputLabel value="OTP"/>
+                 <p:inputText value="#{forgotPassManagedBean.otp}"/>
+                <br/><br/>
+                
+                
+                <p:outputLabel value="Password"/>
+                <p:inputText type="password" value="#{forgotPassManagedBean.user_pass}"/>
+                <br/><br/>
+                
+                <p:commandButton style="background-color: #3b7771" value="Submit" action="#{forgotPassManagedBean.ResetPass()}"/>
+                </center> 
+            </p:card>
+        </h:form>
+    </h:body>
+</html>

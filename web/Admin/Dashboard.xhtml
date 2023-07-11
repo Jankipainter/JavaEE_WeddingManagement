@@ -1,0 +1,143 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+        <style>
+             
+            body .ui-panelgrid .ui-panelgrid-cell{
+                border: none;
+                background-color:#dff3f1;
+            }
+            </style>
+    </h:head>
+    <h:body >
+        
+        
+        
+                            <div id="header" style="background-color: #ffffff">
+                         </div>
+            <br/><br/>
+            <!--#63c7bd-->
+
+            <h:form id="toggle" style="background-color: #ffffff"> 
+
+                <p:commandButton  icon="pi pi-bars" style="background-color:#ffffff;height: 30% ;border: none;margin-left: 2%;margin-bottom: 2%;color: #dd666c" oncomplete="PF('sidebar1').show()"/>
+
+                <h:outputText value="The Real Wedding" style="margin-left: 38%;font-size: 200%;color: #dd666c"/>
+                <span style="margin-left: 25%">
+                   <i  class="pi pi-calendar" >
+                       <p:calendar value="#{weddingManagedBean.currentDate}" onchange="false" onclick="false"/>
+                        </i>
+                </span>
+                
+                
+                <p:sidebar widgetVar="sidebar1" >
+                    <br/><br/>
+                    <h:graphicImage url="/Resource/images/logo.jpg" style="background-color: #ffffff" height="85px" width="100%"></h:graphicImage><br/><br/>
+                    <p:commandButton value="Home" action="#{plannerManagedBean.gotoAdminHome()}"  style="width: 100%;background-color: #dd666c;border: none" oncomplete="PF('sidebar1').hide()"/>  <br/><br/>
+                    <p:commandButton value="Planner List" action="#{plannerManagedBean.gotoPlannerList()}" style="width: 100%;background-color: #dd666c;border: none " oncomplete="PF('sidebar1').hide()"/><br/><br/>
+                    <p:commandButton value="User List" action="#{plannerManagedBean.gotoUserList()}" style="width: 100%;background-color: #dd666c;border: none " oncomplete="PF('sidebar1').hide()"/>  <br/><br/>
+                </p:sidebar>
+
+            </h:form>
+
+<!--            <h1>#{userManageBean.HinduEventCount()}</h1>
+            <h1>#{userManageBean.MuslimEventCount()}</h1>
+            <h1>#{userManageBean.ChristenEventCount()}</h1>
+            <h1>#{userManageBean.ParsiEventCount()}</h1>-->
+            
+            <h:form >
+                <p:card  style="height: 190%;background-color: #dff3f1">
+            <p:panelGrid columns="6" style="border: #ffffff;margin-top: 3%;margin-left: 10%">
+            <div class="col-lg-6 mb-4" >
+            <div class="col-6">
+            
+                <p:card  style=" width: 18rem;height: 10rem;margin-bottom: 2em;background-color: #dd666c;color: #ffffff;" >
+                <f:facet name="title">
+                    <h1 style="font-size: 35px;margin-left: 3%;color: #ffffff">#{userManageBean.getUserCount} <h:commandButton action="#{plannerManagedBean.gotoUserList()}" style="width: 70%;font-size: 2.2rem;background-color:#dd666c;border: none " /></h1>
+                    
+                    <h3 style="margin-bottom: 10%;color: #ffffff" >Users
+                        
+                   <i  style="font-size: 40px;margin-left: 40%;color: #ffffff" class="pi pi-users"/>
+                       
+                    </h3>
+                </f:facet>
+            </p:card>
+         
+            </div>
+                
+            <div class="col-6">
+            
+             <p:card  style=" width: 18rem;height: 10rem;margin-left: 10%;margin-bottom: 2em;background-color: #e0757a;color: #ffffff;">
+                <f:facet name="title">
+                    <h1 style="font-size: 35px;margin-left: 3%;color: #ffffff">#{userManageBean.getPlannerCount}<h:commandButton action="#{plannerManagedBean.gotoPlannerList()}" style="width: 70%;font-size: 2.2rem;background-color:#e0757a;border: none " /> </h1>
+                    <h3 style="margin-bottom: 10%;color: #ffffff" >Planners <i  style="font-size: 40px;margin-left: 25%;color: #ffffff" class="pi pi-users"/></h3>
+                </f:facet>
+           
+             </p:card>
+           
+                
+            </div> 
+                <div class="col-6">
+            
+             <p:card  style=" width: 18rem;height: 10rem;margin-left: 10%;margin-bottom: 2em;background-color: #e0757a;color: #ffffff;">
+                <f:facet name="title">
+                    <h1 style="font-size: 35px;margin-left: 3%;color: #ffffff">#{serviceManagedBean.getServiceCount}<h:commandButton action="#{serviceManagedBean.goToServiceList()}" style="width: 70%;font-size: 20px;background-color:#e0757a;border: none " /> </h1>
+                    <h3 style="margin-bottom: 10%;color: #ffffff" >Service<i  style="font-size: 40px;margin-left: 25%;color: #ffffff" class="pi pi-briefcase"/></h3>
+                </f:facet>
+           
+             </p:card>
+           
+                
+            </div> 
+                
+            </div> 
+                
+            </p:panelGrid>
+              
+                
+                <p:card>
+                    <div class="row">
+                        <div class="col-lg-4 col-md-6 mt-5">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="iq-badges text-left">
+                                        <div class="badges-icon">
+                                            <img src="../resources/image/hindu.png" class="avatar-30 img-fluid" style="height: 20%;width: 20%" alt="users"/> 
+                                        </div>
+                                        <div class="mt-1">
+                                            <a href="home.xhtml"><h2>Hindu</h2>
+                                                <h3>#{userManageBean.HinduEventCount()}</h3></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                         <div class="col-lg-4 col-md-6 mt-5">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="iq-badges text-left">
+                                        <div class="badges-icon">
+                                            <img src="../resources/image/hindu.png" class="avatar-30 img-fluid" style="height: 20%;width: 20%" alt="users"/> 
+                                        </div>
+                                        <div class="mt-1">
+                                            <a href="home.xhtml"><h2>Muslim</h2>
+                                                <h3>#{userManageBean.HinduEventCount()}</h3></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </p:card>
+                    
+                      </p:card>
+        </h:form>
+    </h:body>
+</html>

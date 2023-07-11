@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+           <br/>
+         <h:form id="toggle" > 
+
+                <p:commandButton  icon="pi pi-bars" style="background-color:#ffffff;height: 30% ;border: none;margin-left: 2%;margin-bottom: 2%;color: #dd666c" oncomplete="PF('sidebar1').show()"/>
+
+                <h:outputText value="The Real Wedding" style="margin-left: 38%;font-size: 200%;color: #dd666c"/>
+                <span style="margin-left: 32%">
+                    <p:commandButton icon="pi pi-user" styleClass="rounded-button" style="background-color:#dd666c;border: none " action="#{userManageBean.viewuser()}"/>
+                </span>
+                <span style="margin-left: 2%">
+                    <p:commandButton icon="pi pi-sign-out" styleClass="rounded-button" style="background-color:#dd666c;border: none " action="#{providedPlannerServiceManagedBean.plannerLogout()}"/>
+                </span>
+                <p:sidebar widgetVar="sidebar1" >
+                    <br/><br/>
+                    <h:graphicImage url="/Resource/images/logo.jpg" style="background-color: #ffffff" height="85px" width="100%"></h:graphicImage><br/><br/>
+                    <p:commandButton value="Home" action="#{plannerManagedBean.gotoplannerhome()}" style="width: 100%;background-color: #dd666c;border: none" oncomplete="PF('sidebar1').hide()"/>  <br/><br/>
+                    <p:commandButton value="Add Service" action="#{plannerManagedBean.gotoplannerAddservice()}" style="width: 100%;background-color: #dd666c;border: none " oncomplete="PF('sidebar1').hide()"/><br/><br/>
+                    <p:commandButton value="Users" action="#{plannerManagedBean.gotoSelectList()}" style="width: 100%;background-color: #dd666c;border: none " oncomplete="PF('sidebar1').hide()"/>  <br/><br/>
+                </p:sidebar>
+
+            </h:form>
+
+        <h:form>
+             <p:card style="margin-left: 30%;margin-right: 30%;margin-top: 5%;background-color: #dff3f1"> 
+                <center>
+                     <h2 style="color: #3b7771">Edit Services</h2>
+         <p:panelGrid columns="2">
+
+             
+            <p:outputLabel value="Planner"/>
+            <p:inputText value="#{providedPlannerServiceManagedBean.planner_id}" />
+            
+             <p:outputLabel value="Planner sevice"/>
+             <p:selectOneMenu value="#{providedPlannerServiceManagedBean.service_id}">
+                 <f:selectItems value="#{serviceManagedBean.getAllService}" var="s" itemLabel="#{s.serviceName} , #{s.religion.religionName}" itemValue="#{s.serviceId}"/>
+             </p:selectOneMenu>
+            
+             <p:outputLabel value="Details"/>
+             <p:inputText value="#{providedPlannerServiceManagedBean.details}"/>
+            
+               <p:outputLabel value="isActive"/>
+             <p:selectOneMenu value="#{providedPlannerServiceManagedBean.isActive}">
+                 
+                 <f:selectItem itemValue="0" itemLabel="False" />
+                 <f:selectItem itemValue="1" itemLabel="True" />
+             </p:selectOneMenu>
+             
+            </p:panelGrid>
+            <p:commandButton value="Edit" style="background-color: #3b7771;margin-top: 2%" action="#{providedPlannerServiceManagedBean.psEdit()}"/>
+                </center>
+             </p:card>
+            </h:form>
+    </h:body>
+</html>
